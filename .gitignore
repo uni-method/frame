@@ -1,0 +1,6 @@
+/vendor
+/coverage
+.phpunit.*
+.phpactor.json
+/.zed
+.php-cs-fixer.cache

@@ -1,0 +1,68 @@
+{
+  "name": "uni-method/frame",
+  "description": "Declarative REST API layer for PHP: a config describes models, relations and actions; the framework maps requests to your entities, validates structure, enforces access and builds responses",
+  "type": "library",
+  "keywords": [
+    "api",
+    "rest",
+    "crud",
+    "declarative",
+    "config",
+    "mapping",
+    "dto",
+    "validation",
+    "access-control",
+    "filtering"
+  ],
+  "homepage": "https://github.com/uni-method/frame",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexander Kompaneytsev",
+      "email": "kompaneytsev+git@live.com",
+      "homepage": "https://kompaneytsev.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/uni-method/frame/issues",
+    "source": "https://github.com/uni-method/frame"
+  },
+  "require": {
+    "php": "^8.3",
+    "ext-filter": "*",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^12.4",
+    "phpstan/phpstan": "^2.1",
+    "rector/rector": "^2.2",
+    "squizlabs/php_codesniffer": "^4.0",
+    "friendsofphp/php-cs-fixer": "^3.95"
+  },
+  "autoload": {
+    "psr-4": {
+      "UniMethod\\Frame\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "UniMethod\\Frame\\Tests\\Unit\\": "tests/Unit"
+    }
+  },
+  "scripts": {
+    "ci:php-cs-fixer": "php-cs-fixer fix --dry-run --diff",
+    "ci:phpcs": "phpcs",
+    "ci:phpstan": "phpstan analyse -c phpstan.neon --memory-limit=2G",
+    "ci:rector": "rector process --dry-run",
+    "ci:phpunit": "phpunit tests",
+    "ci:php-lint": "docker run --rm -v \"$PWD\":/app -w /app php:8.3-cli-alpine sh -c 'rc=0; for f in $(find src tests -name \"*.php\"); do php -d display_errors=stderr -d log_errors=0 -l \"$f\" >/dev/null || rc=1; done; exit $rc'",
+    "ci": [
+      "@ci:php-cs-fixer",
+      "@ci:phpcs",
+      "@ci:phpstan",
+      "@ci:rector",
+      "@ci:phpunit"
+    ]
+  }
+}

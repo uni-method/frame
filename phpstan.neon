@@ -1,0 +1,22 @@
+parameters:
+    level: 7
+    phpVersion: 80300
+    paths:
+        - src
+        - tests
+    ignoreErrors:
+        -
+            identifier: class.notFound
+            message: '#Stub#'
+            paths:
+                - tests
+        -
+            identifier: method.notFound
+            message: '#Call to an undefined method object::#'
+            paths:
+                - tests
+        -
+            identifier: property.notFound
+            message: '#Access to an undefined property object::#'
+            paths:
+                - tests
